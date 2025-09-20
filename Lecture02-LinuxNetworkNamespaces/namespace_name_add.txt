@@ -1,0 +1,26 @@
+# Create netns directory if not exist
+mkdir -p /var/run/netns
+
+# Add all process namespaces to netns
+for i in /proc/[0-9]*/ns/net; do
+  ln -s $i /var/run/netns/proc$(echo $i | cut -d/ -f3)
+done
+
+# Remove unassociated network namespaces
+for i in $(ip netns | grep ^proc | grep -v id); do
+  rm -f /var/run/netns/${i}
+done
+
+# Remove children processes
+for i in $(ip netns | grep ^proc | awk 'a[$3]++ {print $1}'); do
+  rm -f /var/run/netns/${i}
+done
+
+# Do some action for each ns (eg. check if there is 1.2.3.4 address exists)
+for i in $(ip netns | grep ^proc | awk '{print $1}'); do
+  echo -n "$i "
+  ip netns exec $i ip addr | grep -c '1.2.3.4'
+done
+
+# Remove added namespaces
+rm -f /var/run/netns/proc*
