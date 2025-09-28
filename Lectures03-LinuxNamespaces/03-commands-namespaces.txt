@@ -1,0 +1,40 @@
+// Cgroups, IPC, Network, Mount, PID, User, UTS
+# ls -l /proc/$$/ns
+total 0
+lrwxrwxrwx 1 root root 0 сен 28 12:41 cgroup -> 'cgroup:[4026531835]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 ipc -> 'ipc:[4026531839]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 mnt -> 'mnt:[4026531841]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 net -> 'net:[4026531840]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 pid -> 'pid:[4026531836]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 pid_for_children -> 'pid:[4026531836]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 time -> 'time:[4026531834]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 time_for_children -> 'time:[4026531834]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 user -> 'user:[4026531837]'
+lrwxrwxrwx 1 root root 0 сен 28 12:41 uts -> 'uts:[4026531838]'
+
+# unshare -u bash
+# ls -l /proc/$$/ns
+total 0
+lrwxrwxrwx 1 root root 0 сен 28 14:45 cgroup -> 'cgroup:[4026531835]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 ipc -> 'ipc:[4026531839]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 mnt -> 'mnt:[4026531841]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 net -> 'net:[4026531840]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 pid -> 'pid:[4026531836]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 pid_for_children -> 'pid:[4026531836]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 time -> 'time:[4026531834]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 time_for_children -> 'time:[4026531834]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 user -> 'user:[4026531837]'
+lrwxrwxrwx 1 root root 0 сен 28 14:45 uts -> 'uts:[4026532405]'
+
+# hostname
+VM133009
+# hostname test-uts
+# hostname
+test-uts
+# ^d
+ hostname
+VM133009
+
+
+
+
